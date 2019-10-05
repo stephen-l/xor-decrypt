@@ -7,7 +7,7 @@ def rotate(string, n): # rotate the key
 def xor(data, key): # xor each byte while looping through key
     l = len(key)
 
-    decoded = ""
+    decoded = ''
     for i in range(0, len(data)):
         decoded += chr(ord(data[i]) ^ ord(key[i % l]))
     return decoded
@@ -39,17 +39,17 @@ print(' [+] Looking for MZ')
 
 for i in key: # rotate the key until "MZ\x90" is found
     key = rotate(key,1)
-    if "M" == chr(ord(s[0]) ^ ord(key[0])) and "Z" == chr(ord(s[1]) ^ ord(key[1])) and "\x90" == chr(ord(s[2]) ^ ord(key[2])):
+    if 'M' == chr(ord(s[0]) ^ ord(key[0])) and 'Z' == chr(ord(s[1]) ^ ord(key[1])) and '\x90' == chr(ord(s[2]) ^ ord(key[2])):
             print(' [+] MZ header found')
             print(' [+] Key = %r' % key)
             break
 
 if not len(sys.argv) == 3: # quick cli args
-    print("Usage: %s encryptedfile outputfile" % sys.argv[0])
+    print('Usage: %s encryptedfile outputfile' % sys.argv[0])
 else:
     with open(sys.argv[1], 'r') as myfile:
         data=myfile.read()
     print(' [+] Writing executable')
-    fo = open(sys.argv[2], "wb")
+    fo = open(sys.argv[2], 'wb')
     fo.write(xor(data,key)) # write the new file to disk
     fo.close()
