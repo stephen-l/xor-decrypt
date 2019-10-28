@@ -40,7 +40,7 @@ print(' [+] Looking for MZ')
 for i in key: # rotate the key until "MZ\x90" is found
     key = rotate(key,1)
     if 'M' == chr(ord(s[0]) ^ ord(key[0])) and 'Z' == chr(ord(s[1]) ^ ord(key[1])) and '\x90' == chr(ord(s[2]) ^ ord(key[2])):
-            print(' [+] MZ header found')
+            print(' [+] MZ\x90 header found')
             print(' [+] Key = %r' % key)
             break
 
